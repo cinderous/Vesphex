@@ -1,0 +1,206 @@
+---
+import { arena } from '../data/arena';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section class="section section--alt" id="arena" aria-labelledby="arena-title">
+  <div class="wrap">
+    <SectionHeader
+      index={arena.index}
+      kicker={arena.kicker}
+      heading={arena.heading}
+      headingId="arena-title"
+      copy={arena.copy}
+    />
+
+    <article class="deadlock frame">
+      <span class="frame-b" aria-hidden="true"></span>
+      <svg class="schematic" viewBox="0 0 280 200" aria-hidden="true">
+        <rect x="8" y="8" width="264" height="184" fill="none" stroke="rgba(232,226,212,0.1)"></rect>
+        <path d="M20 40 H260 M20 80 H260 M20 120 H260 M20 160 H260 M60 20 V180 M110 20 V180 M160 20 V180 M210 20 V180" stroke="rgba(232,226,212,0.06)"></path>
+        <circle cx="88" cy="72" r="16" fill="none" stroke="#c9a227" stroke-opacity="0.45"></circle>
+        <circle cx="176" cy="118" r="10" fill="none" stroke="#c9a227" stroke-opacity="0.35"></circle>
+        <path d="M88 72 L176 118 L214 64" fill="none" stroke="#c9a227" stroke-opacity="0.35" stroke-dasharray="3 4"></path>
+        <circle cx="214" cy="64" r="3" fill="#c9a227"></circle>
+        <circle cx="88" cy="72" r="2.2" fill="#c9a227"></circle>
+      </svg>
+      <div class="deadlock__copy">
+        <p class="meta">{arena.featured.designation}</p>
+        <h3>{arena.featured.name}</h3>
+        <p class="deadlock__status">
+          <span class="status-dot status-dot--live" aria-hidden="true"></span>
+          {arena.featured.status}
+        </p>
+        <p>{arena.featured.summary}</p>
+        <ul class="modules">
+          {arena.featured.modules.map((module) => (
+            <li class="tag">{module}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="telemetry">
+        {arena.featured.telemetry.map((row) => (
+          <div>
+            <p class="meta">{row.label}</p>
+            <p class="telemetry__value">{row.value}</p>
+            <p class="telemetry__hint">{row.hint}</p>
+          </div>
+        ))}
+      </div>
+    </article>
+
+    <ul class="disciplines">
+      {arena.disciplines.map((item) => (
+        <li>
+          <h3>{item.label}</h3>
+          <p>{item.note}</p>
+        </li>
+      ))}
+    </ul>
+
+    {arena.watchlist.map((slot) => (
+      <aside class="watch" aria-label="Additional theaters">
+        <p class="meta">{slot.status}</p>
+        <p>{slot.name}</p>
+        <p>{slot.note}</p>
+      </aside>
+    ))}
+  </div>
+</section>
+
+<style>
+  .deadlock {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.4rem 1.25rem;
+    border: 1px solid var(--line-mid);
+    background: rgba(7, 7, 6, 0.55);
+  }
+
+  .schematic {
+    width: min(100%, 20rem);
+    height: auto;
+    justify-self: center;
+    opacity: 0.95;
+  }
+
+  .deadlock h3 {
+    margin: 0.45rem 0 0.6rem;
+    font-size: clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem);
+    letter-spacing: 0.08em;
+  }
+
+  .deadlock__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.9rem;
+    color: var(--amber);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+  }
+
+  .deadlock p {
+    color: var(--fog);
+  }
+
+  .modules,
+  .disciplines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .telemetry {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .telemetry > div {
+    padding: 0.9rem 0.75rem;
+    border: 1px solid var(--line);
+  }
+
+  .telemetry__value {
+    margin: 0.35rem 0 0.2rem;
+    color: var(--paper);
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+  }
+
+  .telemetry__hint {
+    margin: 0;
+    color: var(--dust);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .disciplines {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .disciplines li {
+    padding: 1rem 1rem 1.1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .disciplines h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .disciplines p,
+  .watch p {
+    margin: 0;
+    color: var(--fog);
+  }
+
+  .watch {
+    margin-top: 1.25rem;
+    padding: 1rem 1.1rem;
+    border: 1px dashed var(--line-mid);
+  }
+
+  .watch p:nth-child(2) {
+    margin: 0.35rem 0;
+    color: var(--paper);
+  }
+
+  @media (min-width: 860px) {
+    .deadlock {
+      grid-template-columns: 0.9fr 1.2fr;
+      grid-template-areas:
+        'schematic copy'
+        'telemetry telemetry';
+      align-items: center;
+    }
+
+    .schematic {
+      grid-area: schematic;
+    }
+
+    .deadlock__copy {
+      grid-area: copy;
+    }
+
+    .telemetry {
+      grid-area: telemetry;
+    }
+
+    .disciplines {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

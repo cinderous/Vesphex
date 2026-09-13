@@ -1,0 +1,107 @@
+---
+import { site } from '../config/site';
+import { nav } from '../data/nav';
+import WaspMark from './WaspMark.astro';
+
+const year = new Date().getFullYear();
+const identity = site.identity.join(' · ');
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__grid">
+    <div class="site-footer__brand">
+      <p class="brandline">
+        <WaspMark size={22} />
+        <span>{site.domain.toUpperCase()}</span>
+      </p>
+      <p class="meta">{identity}</p>
+      <p class="status">
+        <span class="status-dot status-dot--live" aria-hidden="true"></span>
+        System status: {site.system.status}
+      </p>
+    </div>
+    <nav aria-label="Footer">
+      {nav.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+  </div>
+  <div class="wrap site-footer__legal">
+    <p>© {year} {site.name}. All rights reserved.</p>
+    <p>Static node. No tracking. No collection.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem 1.8rem;
+    background: #090908;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: 2rem;
+    padding-bottom: 1.8rem;
+  }
+
+  .brandline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 0.7rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0.85rem 0 0;
+    color: var(--amber-soft);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.15rem;
+  }
+
+  nav a {
+    color: var(--fog);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .site-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.6rem 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--ash);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .site-footer__legal p {
+    margin: 0;
+  }
+
+  @media (min-width: 800px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+  }
+</style>

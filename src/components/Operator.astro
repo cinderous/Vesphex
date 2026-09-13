@@ -1,0 +1,59 @@
+---
+import { operator } from '../data/operator';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section class="section section--alt" id="operator" aria-labelledby="operator-title">
+  <div class="wrap">
+    <SectionHeader
+      index={operator.index}
+      kicker={operator.kicker}
+      heading={operator.heading}
+      headingId="operator-title"
+      copy={operator.copy}
+    />
+    <ul class="pillars">
+      {operator.pillars.map((pillar, i) => (
+        <li class="pillar frame">
+          <span class="frame-b" aria-hidden="true"></span>
+          <p class="meta">Axis / 0{i + 1}</p>
+          <h3>{pillar.title}</h3>
+          <p>{pillar.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .pillars {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pillar {
+    padding: 1.4rem 1.3rem 1.5rem;
+    border: 1px solid var(--line);
+    background: rgba(7, 7, 6, 0.45);
+  }
+
+  .pillar h3 {
+    margin: 0.85rem 0 0.7rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+  }
+
+  .pillar p:last-child {
+    margin: 0;
+    color: var(--fog);
+  }
+
+  @media (min-width: 860px) {
+    .pillars {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

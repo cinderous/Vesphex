@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="VESPHEx">
+  <rect width="32" height="32" fill="#0b0b0a"/>
+  <path d="M3.8 11.2 14.2 15.2 4.2 18.4Z" fill="#c9a227" opacity=".38"/>
+  <path d="M28.2 11.2 17.8 15.2 27.8 18.4Z" fill="#c9a227" opacity=".38"/>
+  <path d="M14.7 7.1 12.1 3.8" stroke="#c9a227" stroke-width=".8" stroke-linecap="square"/>
+  <path d="M17.3 7.1 19.9 3.8" stroke="#c9a227" stroke-width=".8" stroke-linecap="square"/>
+  <path d="M16 6.2 18.4 9.6 16 12.2 13.6 9.6Z" fill="#ebe4d6"/>
+  <path d="M14.15 12.2h3.7v4.15H14.15Z" fill="#ebe4d6"/>
+  <circle cx="16" cy="14.15" r="1.15" fill="#c9a227"/>
+  <path d="M14.05 17.2h3.9l-.75 4.05h-2.4Z" fill="#c8c0b0"/>
+  <path d="M14.85 21.4h2.3L16.55 24.3h-1.1Z" fill="#b4ab9a"/>
+  <path d="M15.45 24.45h1.1L16 28.2Z" fill="#c9a227"/>
+</svg>

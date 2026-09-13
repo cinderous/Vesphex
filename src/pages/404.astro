@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout
+  title={`Signal lost — ${site.name}`}
+  description="The requested node is not part of the Vesphex system."
+  path="/404"
+  robots="noindex, nofollow"
+>
+  <section class="lost">
+    <div class="wrap">
+      <p class="kicker">404 / Unreachable</p>
+      <h1>NODE UNREACHABLE</h1>
+      <p>The requested path is not part of this system.</p>
+      <a class="btn btn--primary" href="/">Return to origin</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lost {
+    display: grid;
+    align-items: center;
+    min-height: calc(100svh - 16rem);
+    padding-block: 5rem;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.4rem, 1.5rem + 4vw, 4.5rem);
+    letter-spacing: 0.06em;
+  }
+
+  p {
+    max-width: 32rem;
+    color: var(--fog);
+  }
+
+  .btn {
+    margin-top: 1.5rem;
+  }
+</style>

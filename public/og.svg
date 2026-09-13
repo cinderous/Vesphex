@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="VESPHEx">
+  <rect width="1200" height="630" fill="#070706"/>
+  <g stroke="#ebe4d6" stroke-opacity=".05" fill="none">
+    <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/>
+    <path d="M80 0v630M160 0v630M240 0v630M320 0v630M400 0v630M480 0v630M560 0v630M640 0v630M720 0v630M800 0v630M880 0v630M960 0v630M1040 0v630M1120 0v630"/>
+  </g>
+  <rect x="36" y="36" width="1128" height="558" fill="none" stroke="#c9a227" stroke-opacity=".28"/>
+  <path d="M36 36h22M36 36v22M1164 36h-22M1164 36v22M36 594h22M36 594v-22M1164 594h-22M1164 594v-22" stroke="#c9a227" stroke-width="2" fill="none"/>
+  <text x="88" y="118" fill="#c9a227" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" letter-spacing="6">VESPHEx SYSTEM  /  ONLINE</text>
+  <text x="84" y="280" fill="#ebe4d6" font-family="Avenir Next, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="92" font-weight="600" letter-spacing="8">VESPHEx</text>
+  <text x="88" y="338" fill="#a39c8e" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" letter-spacing="4">DEVELOPER  /  GAMER  /  SYSTEMS ARCHITECT</text>
+  <text x="88" y="520" fill="#7a7468" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" letter-spacing="3">VESPHEx.TECH</text>
+  <g transform="translate(820 78)">
+    <path d="M40 150 L170 188 L48 214Z" fill="#c9a227" opacity=".22"/>
+    <path d="M320 150 L190 188 L312 214Z" fill="#c9a227" opacity=".22"/>
+    <path d="M164 92 L128 42" stroke="#c9a227" stroke-width="3"/>
+    <path d="M196 92 L232 42" stroke="#c9a227" stroke-width="3"/>
+    <path d="M180 78 L208 118 L180 150 L152 118Z" fill="#ebe4d6"/>
+    <path d="M158 150h44v52H158Z" fill="#ebe4d6"/>
+    <circle cx="180" cy="174" r="12" fill="#c9a227"/>
+    <path d="M156 210h48l-10 52h-28Z" fill="#c4bba8"/>
+    <path d="M166 266h28l-8 38h-12Z" fill="#b0a792"/>
+    <path d="M174 308h12l-6 48Z" fill="#c9a227"/>
+  </g>
+</svg>

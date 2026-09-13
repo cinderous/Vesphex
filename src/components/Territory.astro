@@ -1,0 +1,113 @@
+---
+import { territory } from '../data/territory';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section class="section section--alt" id="territory" aria-labelledby="territory-title">
+  <div class="wrap">
+    <SectionHeader
+      index={territory.index}
+      kicker={territory.kicker}
+      heading={territory.heading}
+      headingId="territory-title"
+      copy={territory.copy}
+    />
+
+    <div class="holdings">
+      {territory.properties.map((property) => (
+        <article class="property frame">
+          <span class="frame-b" aria-hidden="true"></span>
+          <p class="meta">{property.classification}</p>
+          <h3>{property.name}</h3>
+          <p class="property__status">
+            <span class="status-dot status-dot--live" aria-hidden="true"></span>
+            {property.status}
+          </p>
+          <p>{property.note}</p>
+        </article>
+      ))}
+      <article class="property property--queue">
+        <p class="meta">{territory.queue.status}</p>
+        <h3>{territory.queue.label}</h3>
+        <p>{territory.queue.note}</p>
+      </article>
+    </div>
+
+    <ul class="practices">
+      {territory.practices.map((practice) => (
+        <li>
+          <h3>{practice.label}</h3>
+          <p>{practice.note}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .holdings {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .property {
+    padding: 1.3rem 1.2rem;
+    border: 1px solid var(--line-mid);
+    background: rgba(7, 7, 6, 0.5);
+  }
+
+  .property--queue {
+    border-style: dashed;
+  }
+
+  .property h3 {
+    margin: 0.55rem 0 0.45rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+  }
+
+  .property__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.7rem;
+    color: var(--amber);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+
+  .property p,
+  .practices p {
+    margin: 0;
+    color: var(--fog);
+  }
+
+  .practices {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .practices li {
+    padding: 0.95rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .practices h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.92rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 800px) {
+    .holdings,
+    .practices {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import { projects } from '../data/projects';
+import ProjectCard from './ProjectCard.astro';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section class="section" id="lab" aria-labelledby="lab-title">
+  <div class="wrap">
+    <SectionHeader
+      index="02"
+      kicker="Workshop"
+      heading="VESPHEx LAB"
+      headingId="lab-title"
+      copy="Experiments become systems."
+    />
+    <div class="grid">
+      {projects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 760px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

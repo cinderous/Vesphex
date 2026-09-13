@@ -1,0 +1,77 @@
+---
+import { signal } from '../data/signal';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section class="section" id="signal" aria-labelledby="signal-title">
+  <div class="wrap signal">
+    <SectionHeader
+      index={signal.index}
+      kicker={signal.kicker}
+      heading={signal.heading}
+      headingId="signal-title"
+    />
+    <blockquote>
+      {signal.primary.map((line) => (
+        <p>{line}</p>
+      ))}
+    </blockquote>
+    <p class="between">
+      {signal.secondaryLead}
+      <span>
+        {signal.secondary.map((item) => (
+          <b>{item}</b>
+        ))}
+      </span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .signal {
+    max-width: 46rem;
+  }
+
+  blockquote {
+    margin: 0 0 2.5rem;
+    padding: 0;
+    border: 0;
+  }
+
+  blockquote p {
+    margin: 0;
+    font-size: clamp(1.45rem, 1.1rem + 1.5vw, 2.15rem);
+    font-weight: 450;
+    letter-spacing: 0.01em;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+
+  blockquote p + p {
+    margin-top: 0.7rem;
+    color: var(--fog);
+  }
+
+  .between {
+    margin: 0;
+    color: var(--dust);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+  }
+
+  .between span {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-top: 0.85rem;
+  }
+
+  .between b {
+    color: var(--paper);
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+</style>

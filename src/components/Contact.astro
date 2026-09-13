@@ -1,0 +1,107 @@
+---
+import { isLiveHref, site } from '../config/site';
+import SectionHeader from './SectionHeader.astro';
+
+const channels = Object.entries(site.social);
+---
+
+<section class="section section--alt" id="connect" aria-labelledby="connect-title">
+  <div class="wrap">
+    <SectionHeader
+      index="07"
+      kicker="Contact"
+      heading="ESTABLISH CONNECTION"
+      headingId="connect-title"
+      copy="Channels open when they are real. Empty ports stay empty."
+    />
+    <ul class="ports">
+      {channels.map(([key, channel], index) => {
+        const live = isLiveHref(channel.href);
+        const label = `${String(index + 1).padStart(2, '0')} / ${channel.label}`;
+        return (
+          <li>
+            {live ? (
+              <a href={channel.href} rel={key === 'email' ? undefined : 'noopener noreferrer'}>
+                <span class="meta">Port {String(index + 1).padStart(2, '0')}</span>
+                <strong>{channel.label}</strong>
+                <span class="state">Open</span>
+              </a>
+            ) : (
+              <div>
+                <span class="meta">Port {String(index + 1).padStart(2, '0')}</span>
+                <strong>{channel.label}</strong>
+                <span class="state pending">Signal pending</span>
+                <span class="visually-hidden">{label} is not configured yet.</span>
+              </div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ports {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ports a,
+  .ports div {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1.05rem 1rem;
+    border: 1px solid var(--line);
+    background: rgba(7, 7, 6, 0.4);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .ports a:hover {
+    border-color: var(--amber-deep);
+  }
+
+  .ports strong {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .state {
+    color: var(--amber);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .state.pending {
+    color: var(--dust);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  @media (max-width: 640px) {
+    .ports a,
+    .ports div {
+      grid-template-columns: 1fr auto;
+    }
+
+    .ports .meta {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

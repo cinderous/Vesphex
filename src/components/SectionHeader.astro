@@ -1,0 +1,27 @@
+---
+interface Props {
+  index: string;
+  kicker: string;
+  heading: string;
+  headingId: string;
+  copy?: string;
+}
+
+const { index, kicker, heading, headingId, copy } = Astro.props;
+---
+
+<header class="section-head">
+  <p class="kicker"><span>{index}</span> {kicker}</p>
+  <h2 class="section-title" id={headingId}>{heading}</h2>
+  {copy && <p class="lede">{copy}</p>}
+</header>
+
+<style>
+  .section-head {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .kicker span {
+    color: var(--paper);
+  }
+</style>

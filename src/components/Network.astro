@@ -1,0 +1,136 @@
+---
+import { network } from '../data/network';
+import SectionHeader from './SectionHeader.astro';
+
+const nodeMap = Object.fromEntries(network.nodes.map((node) => [node.id, node]));
+---
+
+<section class="section" id="network" aria-labelledby="network-title">
+  <div class="wrap">
+    <SectionHeader
+      index={network.index}
+      kicker={network.kicker}
+      heading={network.heading}
+      headingId="network-title"
+      copy={network.copy}
+    />
+
+    <div class="diagram frame">
+      <span class="frame-b" aria-hidden="true"></span>
+      <svg class="graph" viewBox="0 0 960 560" role="img" aria-labelledby="network-diagram-title">
+        <title id="network-diagram-title">Network of Vesphex domains</title>
+        <g class="links" fill="none">
+          {network.links.flatMap((link) => {
+            const from = nodeMap[link.from];
+            const to = nodeMap[link.to];
+            if (!from || !to) return [];
+            return (
+              <line
+                class:list={['link', { ring: Boolean(link.ring) }]}
+                x1={from.x}
+                y1={from.y}
+                x2={to.x}
+                y2={to.y}
+              />
+            );
+          })}
+        </g>
+        {network.nodes.map((node) => (
+          <g class:list={['node', { primary: Boolean(node.primary) }]} transform={`translate(${node.x} ${node.y})`}>
+            <circle r={node.primary ? 10 : 5}></circle>
+            <text y={node.primary ? 32 : 24}>{node.label}</text>
+          </g>
+        ))}
+      </svg>
+    </div>
+
+    <ul class="node-list">
+      {network.nodes.map((node) => (
+        <li>
+          <span class:list={['pip', { primary: Boolean(node.primary) }]} aria-hidden="true"></span>
+          {node.label}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .diagram {
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--line);
+    background: rgba(11, 11, 10, 0.6);
+  }
+
+  .graph {
+    width: 100%;
+    height: auto;
+  }
+
+  .link {
+    stroke: rgba(201, 162, 39, 0.42);
+    stroke-width: 1;
+    stroke-dasharray: 5 7;
+    animation: dash-move 10s linear infinite;
+  }
+
+  .link.ring {
+    stroke: rgba(232, 226, 212, 0.16);
+    animation-duration: 18s;
+  }
+
+  .node circle {
+    fill: #1e1e1a;
+    stroke: #a8883a;
+    stroke-width: 1;
+  }
+
+  .node.primary circle {
+    fill: #c9a227;
+    stroke: #e4c56a;
+    filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.45));
+  }
+
+  .node text {
+    fill: #ebe4d6;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-anchor: middle;
+  }
+
+  .node-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.1rem;
+    margin: 1.1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .node-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--fog);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+
+  .pip {
+    width: 0.45rem;
+    height: 0.45rem;
+    border: 1px solid var(--amber-soft);
+  }
+
+  .pip.primary {
+    background: var(--amber);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link {
+      animation: none;
+    }
+  }
+</style>

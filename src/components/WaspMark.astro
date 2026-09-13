@@ -1,0 +1,61 @@
+---
+interface Props {
+  size?: number;
+}
+
+const { size = 28 } = Astro.props;
+---
+
+<svg
+  class="wasp-mark"
+  width={size}
+  height={size}
+  viewBox="0 0 32 32"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path class="wasp-mark__wing" d="M3.8 11.2 14.2 15.2 4.2 18.4Z" />
+  <path class="wasp-mark__wing" d="M28.2 11.2 17.8 15.2 27.8 18.4Z" />
+  <path class="wasp-mark__line" d="M14.7 7.1 12.1 3.8" />
+  <path class="wasp-mark__line" d="M17.3 7.1 19.9 3.8" />
+  <path class="wasp-mark__body" d="M16 6.2 18.4 9.6 16 12.2 13.6 9.6Z" />
+  <path class="wasp-mark__body" d="M14.15 12.2h3.7v4.15H14.15Z" />
+  <circle class="wasp-mark__core" cx="16" cy="14.15" r="1.15" />
+  <path class="wasp-mark__body wasp-mark__body--mid" d="M14.05 17.2h3.9l-.75 4.05h-2.4Z" />
+  <path class="wasp-mark__body wasp-mark__body--low" d="M14.85 21.4h2.3L16.55 24.3h-1.1Z" />
+  <path class="wasp-mark__sting" d="M15.45 24.45h1.1L16 28.2Z" />
+</svg>
+
+<style>
+  .wasp-mark {
+    flex: none;
+  }
+
+  .wasp-mark__wing {
+    fill: var(--amber);
+    opacity: 0.4;
+  }
+
+  .wasp-mark__line {
+    fill: none;
+    stroke: var(--amber);
+    stroke-width: 0.8;
+  }
+
+  .wasp-mark__body {
+    fill: var(--paper);
+  }
+
+  .wasp-mark__body--mid {
+    fill: #c8c0b0;
+  }
+
+  .wasp-mark__body--low {
+    fill: #b4ab9a;
+  }
+
+  .wasp-mark__core,
+  .wasp-mark__sting {
+    fill: var(--amber);
+  }
+</style>
