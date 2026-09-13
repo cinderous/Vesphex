@@ -31,24 +31,24 @@ npm run preview
 
 ## Cloudflare deployment
 
-This project is a static site. It does not need Workers, KV, D1, R2, or any paid Cloudflare product.
+This project is a static site. It does not need KV, D1, R2, or any paid Cloudflare product.
 
 ### Dashboard + GitHub (recommended)
 
 1. Push this repository to GitHub.
-2. Open [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
-3. Select the GitHub repository.
-4. Use these build settings:
+2. Open [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → connect the GitHub repository.
+3. Use these build settings:
 
 | Setting | Value |
 | --- | --- |
-| Framework preset | Astro |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
+| Deploy command | `npx wrangler deploy` |
 | Node version | `22` |
 
-5. Deploy.
-6. In the Pages project, add a custom domain: `vesphex.tech` (and `www` if you use it). Point DNS to Cloudflare if it is not already.
+`wrangler.jsonc` tells Wrangler to upload the static `dist/` folder. No Worker script is required.
+
+4. Deploy.
+5. Add a custom domain: `vesphex.tech` (and `www` if you use it). Point DNS to Cloudflare if it is not already.
 
 Cloudflare will rebuild automatically on every push to the production branch.
 
@@ -57,10 +57,8 @@ Cloudflare will rebuild automatically on every push to the production branch.
 After a local production build:
 
 ```bash
-npx wrangler pages deploy dist
+npx wrangler deploy
 ```
-
-`wrangler.jsonc` is included only as a convenience. It is not required for Dashboard Git deploys.
 
 ## Environment variables
 
